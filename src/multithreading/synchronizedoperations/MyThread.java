@@ -16,9 +16,6 @@
  */
 package multithreading.synchronizedoperations;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author Eduardo
@@ -26,10 +23,7 @@ import java.util.logging.Logger;
 public class MyThread extends Thread {
 
     private String threadName;
-    private int threadSleepAmount;
-    private int[] numbers = {1, 2, 3, 4, 5};
-
-    public static SharedCalculator sharedCalculator = new SharedCalculator();
+    private static Incrementor sharedIncrementor = new Incrementor();
 
     public MyThread(String threadName) {
         this.threadName = threadName;
@@ -37,16 +31,16 @@ public class MyThread extends Thread {
     }
 
     public void notSyncedOperation() {
-        sharedCalculator.add(numbers);
+        System.out.println(sharedIncrementor.increment(1, 2));
     }
 
     public synchronized void syncedOperation() {
-        sharedCalculator.add(numbers);
+        System.out.println(sharedIncrementor.increment(1, 50));
     }
 
     @Override
     public void run() {
-        syncedOperation();
+        notSyncedOperation();
     }
 
     public static void main(String[] main) {
