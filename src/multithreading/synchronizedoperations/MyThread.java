@@ -28,13 +28,11 @@ public class MyThread extends Thread {
     private String threadName;
     private int threadSleepAmount;
     private int[] numbers = {1, 2, 3, 4, 5};
-    
-    public static SharedCalculator sharedCalculator = new SharedCalculator();
-    
 
-    public MyThread(String threadName, int threadSleepAmount) {
+    public static SharedCalculator sharedCalculator = new SharedCalculator();
+
+    public MyThread(String threadName) {
         this.threadName = threadName;
-        this.threadSleepAmount = threadSleepAmount;
         this.start();
     }
 
@@ -48,12 +46,12 @@ public class MyThread extends Thread {
 
     @Override
     public void run() {
-        notSyncedOperation();
+        syncedOperation();
     }
 
     public static void main(String[] main) {
-        MyThread threadA = new MyThread("Thread #1", 750);
-        MyThread threadB = new MyThread("Thread #2", 1000);
+        MyThread threadA = new MyThread("Thread #1");
+        MyThread threadB = new MyThread("Thread #2");
     }
 
 }

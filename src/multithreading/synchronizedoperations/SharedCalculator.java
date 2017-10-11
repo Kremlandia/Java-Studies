@@ -22,16 +22,21 @@ package multithreading.synchronizedoperations;
  */
 public class SharedCalculator {
 
-    //[0] = 0 + 1 = 1
-    //[1] = 1 + 2 = 2
-    //[2] = 2 + 3 = 5
-    //[3] = 3 + 4 = 7
-    //[4] = 4 + 5 = 9
-    public void add(int[] numbers) {
+    private int sum;
+
+    public int add(int[] numbers) {
+        sum = 0;
+
         for (int i = 0; i < numbers.length; i++) {
-            System.out.println(Thread.currentThread().getName() + " accessing " + i);
-            System.out.println(numbers[i] += i);
+            sum += numbers[i];
+            System.out.println("Running total for " + Thread.currentThread().getName() + " is " + sum);
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
+        return sum;
     }
 
 }
