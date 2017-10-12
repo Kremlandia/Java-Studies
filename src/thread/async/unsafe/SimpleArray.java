@@ -20,7 +20,9 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- *
+ * SimpleArray - This class only have for, didatic purposes, an implementation of a method 
+ * that write values in a integer array. Note the add method is not Thread Safe and allows more
+ * threads to write in simultaneously.
  * @author Eduardo
  */
 public class SimpleArray {
@@ -32,7 +34,7 @@ public class SimpleArray {
     public SimpleArray(int size) {
         array = new int[size];
     }
-
+    
     public void add(int value) {
         int position = writeIndex;
 
