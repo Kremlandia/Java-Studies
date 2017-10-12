@@ -16,11 +16,11 @@
  */
 package thread.async.unsafe;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
- *
+ * ArrayWriter - This class implements Runnable interface and uses a
+ * SimpleArray reference to shows through of the add method, how asynchronous
+ * operations can be dangerous when used on shared components between threads 
+ * for maintain data consistency.  
  * @author Eduardo
  */
 public class ArrayWriter implements Runnable {
