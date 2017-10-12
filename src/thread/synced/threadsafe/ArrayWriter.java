@@ -14,21 +14,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package multithreading;
+package thread.synced.threadsafe;
 
 /**
  *
  * @author Eduardo
  */
-public class MainClass {
+public class ArrayWriter implements Runnable {
 
-    public static void main(String[] args) {
-        new MyThread("Thread #1", 500);
-        new MyThread("Thread #2", 750);
-        new MyThread("Thread #3", 1000);
+    private final SimpleArray sharedSimpleArray;
+    private final int startValue;
 
-        new MyRunnable("Thread #4", 500);
-        new MyRunnable("Thread #5", 750);
-        new MyRunnable("Thread #6", 1000);
+    public ArrayWriter(int value, SimpleArray simpleArray) {
+        startValue = value;
+        sharedSimpleArray = simpleArray;
     }
+
+    @Override
+    public void run() {
+        for (int i = startValue; i < startValue + 3; i++) {
+            sharedSimpleArray.add(i);
+        }
+    }
+
 }

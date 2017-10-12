@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package async;
+package create.threads;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -24,30 +24,34 @@ import java.util.concurrent.TimeUnit;
  *
  * @author Eduardo
  */
-public class SharedArrayTest {
+public class MainClass {
 
     public static void main(String[] args) {
-
-        SimpleArray sharedSimpleArray = new SimpleArray(6);
-
-        ArrayWriter writer1 = new ArrayWriter(1, sharedSimpleArray);
-        ArrayWriter writer2 = new ArrayWriter(11, sharedSimpleArray);
-
         ExecutorService executor = Executors.newCachedThreadPool();
-        executor.execute(writer1);
-        executor.execute(writer2);
+
+        MyThread threadA = new MyThread("Thread #1", 1000);
+        MyThread threadB = new MyThread("Thread #2", 1000);
+        MyThread threadC = new MyThread("Thread #3", 1000);
+
+        MyRunnable runnableA = new MyRunnable("Thread #4", 1000);
+        MyRunnable runnableB = new MyRunnable("Thread #5", 1000);
+        MyRunnable runnableC = new MyRunnable("Thread #6", 1000);
+
+        executor.execute(threadA);
+        executor.execute(threadB);
+        executor.execute(threadC);
+
+        executor.execute(runnableA);
+        executor.execute(runnableB);
+        executor.execute(runnableC);
 
         executor.shutdown();
-
         try {
-            boolean tasksEnded = executor.awaitTermination(1, TimeUnit.MINUTES);
-            if (tasksEnded) {
-                System.out.println(sharedSimpleArray);
-            } else {
-                System.out.println("Timed out while waiting for tasks to finish.");
+            if (executor.awaitTermination(1, TimeUnit.MINUTES)) {
+                System.out.println("All Threads has been finalized.");
             }
         } catch (InterruptedException e) {
-            System.out.println("Interrupted while waiting for tasks to finish.");
+            e.printStackTrace();
         }
     }
 }

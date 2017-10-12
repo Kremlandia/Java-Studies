@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package async;
+package thread.synced.threadsafe;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -33,7 +33,7 @@ public class SimpleArray {
         array = new int[size];
     }
 
-    public void add(int value) {
+    public synchronized void add(int value) {
         int position = writeIndex;
 
         try {
