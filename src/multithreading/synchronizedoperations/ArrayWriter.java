@@ -23,37 +23,21 @@ import java.util.logging.Logger;
  *
  * @author Eduardo
  */
-public class MyThread extends Thread {
+public class ArrayWriter implements Runnable {
 
-    private String threadName;
-    private int threadSleepAmount;
-    private int[] numbers = {1, 2, 3, 4, 5};
-    
-    public static SharedCalculator sharedCalculator = new SharedCalculator();
-    
+    private final SimpleArray sharedSimpleArray;
+    private final int startValue;
 
-    public MyThread(String threadName, int threadSleepAmount) {
-        this.threadName = threadName;
-        this.threadSleepAmount = threadSleepAmount;
-        this.start();
-    }
-
-    public void notSyncedOperation() {
-        sharedCalculator.add(numbers);
-    }
-
-    public synchronized void syncedOperation() {
-        sharedCalculator.add(numbers);
+    public ArrayWriter(int value, SimpleArray simpleArray) {
+        startValue = value;
+        sharedSimpleArray = simpleArray;
     }
 
     @Override
     public void run() {
-        notSyncedOperation();
-    }
-
-    public static void main(String[] main) {
-        MyThread threadA = new MyThread("Thread #1", 750);
-        MyThread threadB = new MyThread("Thread #2", 1000);
+        for (int i = startValue; i < startValue + 3; i++) {
+            sharedSimpleArray.add(i);
+        }
     }
 
 }
