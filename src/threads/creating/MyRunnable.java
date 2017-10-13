@@ -14,26 +14,36 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package thread.synced.threadsafe;
+package threads.creating;
 
 /**
  *
  * @author Eduardo
  */
-public class ArrayWriter implements Runnable {
+public class MyRunnable implements Runnable {
 
-    private final SimpleArray sharedSimpleArray;
-    private final int startValue;
+    private String threadName;
+    private int threadSleepAmount;
 
-    public ArrayWriter(int value, SimpleArray simpleArray) {
-        startValue = value;
-        sharedSimpleArray = simpleArray;
+    public MyRunnable(String threadName, int threadSleepAmount) {
+        this.threadName = threadName;
+        this.threadSleepAmount = threadSleepAmount;
+        new Thread(this).start();
     }
 
     @Override
     public void run() {
-        for (int i = startValue; i < startValue + 3; i++) {
-            sharedSimpleArray.add(i);
+        increment(5);
+    }
+
+    public void increment(int times) {
+        for (int counter = 0; counter <= times; counter++) {
+            System.out.println(threadName + " counting " + counter);
+            try {
+                Thread.sleep(threadSleepAmount);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 

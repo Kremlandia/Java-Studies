@@ -14,29 +14,36 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package thread.async.unsafe;
+package threads.creating;
 
 /**
- * ArrayWriter - This class implements Runnable interface and uses a
- * SimpleArray reference to shows through of the add method, how asynchronous
- * operations can be dangerous when used on shared components between threads 
- * for maintain data consistency.  
+ *
  * @author Eduardo
  */
-public class ArrayWriter implements Runnable {
+public class MyThread extends Thread {
 
-    private final SimpleArray sharedSimpleArray;
-    private final int startValue;
+    private String threadName;
+    private int threadSleepAmount;
 
-    public ArrayWriter(int value, SimpleArray simpleArray) {
-        startValue = value;
-        sharedSimpleArray = simpleArray;
+    public MyThread(String threadName, int threadSleepAmount) {
+        this.threadName = threadName;
+        this.threadSleepAmount = threadSleepAmount;
+        this.start();
     }
 
     @Override
     public void run() {
-        for (int i = startValue; i < startValue + 3; i++) {
-            sharedSimpleArray.add(i);
+        increment(5);
+    }
+
+    public void increment(int times) {
+        for (int counter = 0; counter <= times; counter++) {
+            System.out.println(threadName + " counting " + counter);
+            try {
+                Thread.sleep(threadSleepAmount);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
