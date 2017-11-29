@@ -1,6 +1,6 @@
 # Java-Studies & Researches
 
-This is a public git repository for my personal studies with Java™ Standard Edition Programming Language. In this repository i will put all my researches with this technologie.
+This is a public git repository for my personal studies with Java™ Standard Edition Programming Language. In this repository i will put all my researches with this technology.
 
 ## Getting Start
 ###### Introduction
