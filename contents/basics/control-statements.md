@@ -76,6 +76,8 @@ As expressões condicionais são avaliadas de cima para baixo. Assim que uma con
 
 O programa produz a saída abaixo: 
 
+```
 x is not between 1 and 4
-x is one 
+x is one
+``` 
 
