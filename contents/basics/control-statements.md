@@ -79,5 +79,35 @@ O programa produz a saída abaixo:
 ```
 x is not between 1 and 4
 x is one
-``` 
+x is two
+x is three
+x is four 
+x is not between 1 and 4
+```
+Como você pode ver, o else padrão só é executado quando nenhuma das instruções if anteriores é bem-sucedida.
+
+### `switch`
+A segunda instrução de seleção Java é a `switch`. A instrução `switch` fornece uma ramificação com vários caminhos. Logo, ela permite que o programa faça uma seleção entre várias alternativas. Embora uma série de instruções if aninhadas possam executar testes com vários caminhos, em muitas situações switch é uma abordagem mais eficiente. Funciona desta forma: o valor de uma expressão é verificado sucessivamente em uma lista de constantes. Quando uma ocorrência é encontrada, a sequência de instruções associada a essa ocorrência é executada. A forma geral de uma instrução witch é: 
+
+```java
+	switch(expressão){
+		case constante1:
+		sequência de instruções 
+		break;	
+
+		case constante2:
+		sequência de instruções 
+		break;
+
+		case constante3:
+		sequência de instruções 
+		break;
+
+		default: 
+		sequência de instruções 
+		
+	}
+```
+
+EM versões de Java anteriores ao JDK7, a expressão que controla switch deve ser de tipo `byte`, `short`, `int`, `char` ou uma enumeração. A partir do JDK7 a expressão pode ser do tipo String. Ou seja, versões modernas do Java podem usar um string para controlar switch. Com frequência, a expressão que controla switch é apenas uma variável e não uma expressão maior.
 
