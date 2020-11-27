@@ -15,5 +15,5 @@ All these code examples are for my personal study and all you will see here will
 
 ## Index
 
-*[Controle de Fluxo]()
+*[Controle de Fluxo](https://github.com/eduardowgmendes/java-studies/blob/master/contents/basics/control-statements.md#controle-de-fluxo)
 
