@@ -13,7 +13,7 @@ All of this code examples is merely researches or personal tests and not include
 All these code examples are for my personal study and all you will see here will be in some basic book of this subject.
 
 
-## Index
+## Contents Index
 
 *[Controle de Fluxo](https://github.com/eduardowgmendes/java-studies/blob/master/contents/basics/control-statements.md#controle-de-fluxo)
 
